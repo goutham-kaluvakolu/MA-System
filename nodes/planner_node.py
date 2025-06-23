@@ -59,6 +59,7 @@ def planner_node(state: State) -> dict:
     next_agent = response.get("next_agent", "END")
     task_completed = next_agent == "END" or response.get("task_completed", False)
     final_answer = response.get("final_answer") if task_completed else None
+    print(f"DEBUG: Final answer: {final_answer}")
 
     # We return a dictionary of the fields we want to update in the state.
     # LangGraph will merge these updates into the main state.

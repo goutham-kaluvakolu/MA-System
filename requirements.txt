@@ -9,3 +9,5 @@ langsmith
 ipython
 duckduckgo-search
 langchain-community
+pandas
+streamlit

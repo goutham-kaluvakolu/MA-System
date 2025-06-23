@@ -25,6 +25,8 @@ You MUST return a JSON object with the following keys, which directly map to the
 - `task_completed`: `true` if the entire process is finished, otherwise `false`.
 - `final_answer`: The final, comprehensive answer for the user. Only populate this field if `task_completed` is `true`. Otherwise, it must be `null`.
 
+IF THERE IS NO PLAN JUST RESPOND WITH YOU KNOWLEDGE BASED FOR THE FINAL ANSWER.
+
 
 **Example Scenario:**
 The system state shows the `main_task` is "Find the latest offer for headphones in my email and see if it's a good deal." and the last message in `messages` is the JSON output from the `google_api_agent` saying it found a "Sony WH-1000XM5" for "$299.00".
@@ -37,4 +39,6 @@ The system state shows the `main_task` is "Find the latest offer for headphones 
     "task_completed": false,
     "final_answer": null
 }
+
+iF YOU DONT NEED TO PLAN FOR THE TASK JUST RESPOND WITH YOU KNOWLEDGE BASED FOR THE FINAL ANSWER.
 """
