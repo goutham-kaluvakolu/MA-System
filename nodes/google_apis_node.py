@@ -5,7 +5,6 @@ from graph.state import State
 import prompts.google_api_agent_system_prompt
 from prompts.google_api_agent_response_formating_prompt import formatting_prompt
 from mcp_use import MCPAgent, MCPClient
-import asyncio
 
 # This is a new, secondary prompt specifically for the formatting step.
 FORMATTING_PROMPT = formatting_prompt
@@ -22,12 +21,6 @@ async def google_api_agent_node(state: State) -> dict:
     """
     print("---EXECUTING GOOGLE API AGENT---")
     try:
-        # 1. SETUP: Initialize clients and agent as before
-        # config_gmail = json.load(open("./config/config.json"))
-        # config_cal = json.load(open("./config/config-cal.json"))
-        # client = MCPClient()
-        # client.add_server("gmail-mcp",config_gmail)
-        # client.add_server("calender-mcp",config_cal)
         config = {"mcpServers": {"GMAIL": {"url": "http://localhost:8000/mcp"},"CALENDER": {"url": "http://localhost:8001/mcp"}}}
 
     # Create MCPClient from config file
@@ -63,12 +56,8 @@ async def google_api_agent_node(state: State) -> dict:
             )
         ]
 
-        # Use .with_structured_output to guarantee valid JSON
-        # Note: You'd need to define a Pydantic model for this structure for this to work perfectly.
-        # For simplicity, we'll invoke and parse JSON, but structured_output is better.
         structured_response = formatting_llm.invoke(formatting_messages)
         
-        # The content of the response should be the JSON string we need
         final_json_output = structured_response.content
         print(f"Formatted JSON output for Planner:\n{final_json_output}")
 

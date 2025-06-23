@@ -31,7 +31,6 @@ def planner_node(state: State) -> dict:
 
 
     # 2. Provide the LLM with the FULL conversation history.
-    # This is the most critical change. The planner must see what the other agents did.
     messages_for_llm = [SystemMessage(content=system_prompt)]
     # We construct a serializable representation of the state for the LLM
     current_state_str = json.dumps(
@@ -68,7 +67,6 @@ def planner_node(state: State) -> dict:
         "current_task": response.get("current_task"),
         "next_agent": next_agent,
         "task_completed": task_completed,
-        # Append the planner's decision to the message history for logging
         "messages": [AIMessage(content=json.dumps(response))],
         "final_answer": final_answer,
     }

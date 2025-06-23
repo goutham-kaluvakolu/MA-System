@@ -14,7 +14,6 @@ def decision_function(state: State):
     """
     Decision function that routes to the next agent based on planner's decision
     """
-    print(state)
     # Get the next agent from the planner's decision
     next_agent = state.get("next_agent", "websearch_agent")
     
@@ -26,8 +25,7 @@ def decision_function(state: State):
     elif next_agent == "END":
         return END
     else:
-        # Default fallback
-        return "websearch_agent"
+        return "websearch_agent" #default
 
 graph_builder = StateGraph(State)
 graph_builder.add_node("planner",planner_node)
